@@ -20,7 +20,7 @@ def main():
 
 
     # save video
-    write_video(video_frames,'output_videos/output_video.avi')
+    write_video(output_video_frames,'output_videos/output_video.avi')
 
 
 
