@@ -160,3 +160,5 @@ cython_debug/
 #.idea/
 
 runs/
+models/
+football-players-detection-1/

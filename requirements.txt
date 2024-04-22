@@ -4,3 +4,5 @@ opencv-python
 numPy
 matplotlib
 pandas
+roboflow
+python-dotenv
