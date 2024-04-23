@@ -6,3 +6,4 @@ matplotlib
 pandas
 roboflow
 python-dotenv
+scikit-learn
