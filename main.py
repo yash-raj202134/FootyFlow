@@ -10,7 +10,7 @@ from camera_movement_estimator.camera_movement_estimator import CameraMovementEs
 
 def main():
     
-    # read video
+    # Read video
     video_frames = read_video("input_videos/08fd33_4.mp4")
 
     # Initialize tracker
@@ -18,8 +18,15 @@ def main():
     tracker = Tracker("models/best.pt")
     tracks = tracker.get_object_tracks(video_frames,read_from_stub=True,stub_path='stubs/track_stubs.pkl')
 
+    # Get object positions
+    tracker.add_position_to_tracks(tracks)
+
+    # Camera movement estimator
     camera_movement_estimator = CameraMovementEstimator(video_frames[0])
     camera_movement_per_frame = camera_movement_estimator.get_camera_movement(video_frames,read_from_stub=True,stub_path='stubs/camera_movement_stubs.pkl')
+
+    camera_movement_estimator.add_adjust_positions_to_tracks(tracks,camera_movement_per_frame)
+
 
     # Interpolate Ball positions
 
