@@ -32,8 +32,8 @@ class ViewTransformer:
             return None
 
         reshaped_point = point.reshape(-1,1,2).astype(np.float32)
-        tranform_point = cv2.perspectiveTransform(reshaped_point,self.persepctive_trasnformer)
-        return tranform_point.reshape(-1,2)
+        transform_point = cv2.perspectiveTransform(reshaped_point,self.perspective_transformer)
+        return transform_point.reshape(-1,2)
 
 
 
@@ -44,9 +44,9 @@ class ViewTransformer:
                 for track_id, track_info in track.items():
                     position = track_info['position_adjusted']
                     position = np.array(position)
-                    position_trasnformed = self.transform_point(position)
-                    if position_trasnformed is not None:
-                        position_trasnformed = position_trasnformed.squeeze().tolist()
-                    tracks[object][frame_num][track_id]['position_transformed'] = position_trasnformed
+                    position_transformed = self.transform_point(position)
+                    if position_transformed is not None:
+                        position_transformed = position_transformed.squeeze().tolist()
+                    tracks[object][frame_num][track_id]['position_transformed'] = position_transformed
 
 

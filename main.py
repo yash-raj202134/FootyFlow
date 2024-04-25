@@ -6,6 +6,7 @@ from player_ball_assigner.player_ball_assigner import PlayerBallAssigner
 import numpy as np
 import cv2
 from camera_movement_estimator.camera_movement_estimator import CameraMovementEstimator
+from view_transformer.view_transformer import ViewTransformer
 
 
 def main():
@@ -26,6 +27,11 @@ def main():
     camera_movement_per_frame = camera_movement_estimator.get_camera_movement(video_frames,read_from_stub=True,stub_path='stubs/camera_movement_stubs.pkl')
 
     camera_movement_estimator.add_adjust_positions_to_tracks(tracks,camera_movement_per_frame)
+
+    # view transformer 
+    view_transformer = ViewTransformer()
+    view_transformer.add_transformed_position_to_tracks(tracks)
+    
 
 
     # Interpolate Ball positions
