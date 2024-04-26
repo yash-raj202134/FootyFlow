@@ -7,7 +7,7 @@ import numpy as np
 import cv2
 from camera_movement_estimator.camera_movement_estimator import CameraMovementEstimator
 from view_transformer.view_transformer import ViewTransformer
-
+from speed_distance_estimator.speed_distance_estimator import SpeedDistanceEstimator
 
 def main():
     
@@ -37,6 +37,13 @@ def main():
     # Interpolate Ball positions
 
     tracks["ball"] = tracker.interpolate_ball_positions(tracks["ball"])
+
+
+    # Assign spped and distance
+
+    speed_distance_estimator = SpeedDistanceEstimator()
+    speed_distance_estimator.add_speed_and_distance_to_tracks(tracks)
+
 
 
 
@@ -83,6 +90,9 @@ def main():
 
     ## Draw camera movement
     output_video_frames = camera_movement_estimator.draw_camera_movement(output_video_frames,camera_movement_per_frame)
+
+    ## Draw speed and distance
+    speed_distance_estimator.draw_speed_and_distance(output_video_frames,tracks)
 
 
     # save video

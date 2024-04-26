@@ -85,9 +85,9 @@ class CameraMovementEstimator:
         output_frames=[]
 
         for frame_num, frame in enumerate(frames):
-            frame= frame.copy()
+            # frame= frame.copy()
 
-            overlay = frame.copy()
+            overlay = frame
             cv2.rectangle(overlay,(0,0),(500,100),(255,255,255),-1)
             alpha =0.6
             cv2.addWeighted(overlay,alpha,frame,1-alpha,0,frame)
